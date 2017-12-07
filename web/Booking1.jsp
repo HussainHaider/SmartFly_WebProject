@@ -1,5 +1,8 @@
 <%@ page import="com.hussain.Business_Layer.flightClass" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.hussain.Business_Layer.flightDetailClass" %>
+<%@ page import="static java.lang.System.out" %>
+<%@ page import="static java.lang.System.out" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,6 +101,7 @@
                     <%
                         if(session.getAttribute("user_email")==null)
                         {
+
                     %>
 
                     <li><a href="signup.jsp" style="color: white;"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -155,22 +159,47 @@
         </div>
     </div>
 
-    <div class="col-md-2" style="float: right;"> <a href="Book.html" class="btn btn-default">Change Search</a>
+    <div class="col-md-2" style="float: right;"> <a href="Book.jsp" class="btn btn-default">Change Search</a>
         <h1></h1> </div>
 
 </div>
 <div class="hr">
     <hr width="50%" class="style14">
 </div>
-<% ArrayList<flightClass> list = (ArrayList<flightClass>) request.getAttribute("flightClass");
+<%
+
+    String value = request.getParameter("flightSize");
+    int num=Integer.valueOf(value);
+    ArrayList<flightClass> list=null;
+    ArrayList<flightDetailClass> list2=null;
+
+    if(num!=0)
+    {
+        list = (ArrayList<flightClass>) request.getAttribute("flightClass");
+        list2 = (ArrayList<flightDetailClass>) request.getAttribute("flightDetailClass");
+    }
+
+
 %>
 <div class="container" id="myDiv" style="display:none;margin-right: 2%;">
+    <% if (list!=null) { %>
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
-            <h3><strong>Outbound, <%= list.get(0).getSource() %> to <%= list.get(0).getDestination() %> ( <%= list.size() %> options)</strong></h3> </div>
+            <h3><strong>Outbound, <%= list.get(0).getSource() %> to <%= list.get(0).getDestination() %> ( <%= list.size() %> options)</strong></h3>
+        </div>
     </div>
     <%
+        int index=0;
         for(int i = 0; i < list.size(); i+=1) {
+
+            for(int j=0;j<list2.size();j++)
+            {
+                if(list.get(i).getFID()==list2.get(j).getFlightID())
+                {
+                    index=j;
+                }
+            }
+
             String collapse = "collapse"+list.get(i).getFID();
             String collapse1="#collapse"+list.get(i).getFID();
     %>
@@ -205,7 +234,7 @@
             <a data-toggle="collapse" href='<%=collapse1%>' style="color:black;text-decoration: none">
             <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>)">
                 <h4 class="text-success">Economy</h4>
-                <h4 class="text-danger">Price:$<%= 50 %></h4> </div>
+                <h4 class="text-danger">Price:$<%= list2.get(index).getPrice() %></h4> </div>
             </a>
             <div class="collapse arrow_box" id='<%=collapse%>' style="margin-bottom: 2%;">
                 <h3 style="text-align: center">Features</h3>
@@ -213,12 +242,17 @@
                     <ul>
                         <li>Coffee</li>
                         <li>Tea</li>
-                        <li>Milk</li>
+                        <li><%= list2.get(index).getFeature() %></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+        <%  } %>
+    <%  }else { %>
+        <div class="row">
+            <div class="col-md-12"> <h2>No Flight Found</h2> </div>
+        </div>
     <% } %>
 </div>
 <div class="row">

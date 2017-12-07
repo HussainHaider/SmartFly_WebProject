@@ -239,9 +239,9 @@
                         <div class="col-md-4">
                             <div class="input-group">
                                 <select class="form-control" style="border-radius: 5%;width: 140%;" name="deptSelectCategory">
-                                    <option value="Economy class">Economy class</option>
-                                    <option value="Buniess class">Buniess class</option>
-                                    <option value="First class">First class</option>
+                                    <option value="Economy Class">Economy class</option>
+                                    <option value="Buniess Class">Buniess class</option>
+                                    <option value="First Class">First class</option>
                                 </select>
                             </div>
                         </div>
