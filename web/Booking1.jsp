@@ -167,7 +167,7 @@
 <div class="container" id="myDiv" style="display:none;margin-right: 2%;">
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
-            <h3><strong>Outbound, <%= list.get(0).getSource() %> to <%= list.get(0).getDestination() %> (5 options)</strong></h3> </div>
+            <h3><strong>Outbound, <%= list.get(0).getSource() %> to <%= list.get(0).getDestination() %> ( <%= list.size() %> options)</strong></h3> </div>
     </div>
     <%
         for(int i = 0; i < list.size(); i+=1) {
@@ -205,7 +205,7 @@
             <a data-toggle="collapse" href='<%=collapse1%>' style="color:black;text-decoration: none">
             <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>)">
                 <h4 class="text-success">Economy</h4>
-                <h4 class="text-danger">Price:$<%= list.get(i).getPrice() %></h4> </div>
+                <h4 class="text-danger">Price:$<%= 50 %></h4> </div>
             </a>
             <div class="collapse arrow_box" id='<%=collapse%>' style="margin-bottom: 2%;">
                 <h3 style="text-align: center">Features</h3>

@@ -55,11 +55,8 @@ public class FlightSearchDao {
                 value = rs.getString("FlightTime");
                 hashTable.put("FlightTime", value);
 
-                value = rs.getString("flightCid");
-                hashTable.put("flightCid", value);
-
-                value = rs.getString("Price");
-                hashTable.put("Price", value);
+                value = rs.getString("approve");
+                hashTable.put("approve", value);
 
                 list.add(hashTable);
             }

@@ -26,24 +26,9 @@ public class flightServices {
                 String Date= hashTable.get(i).get("Date");
                 String DeptTime= hashTable.get(i).get("DeptTime");
                 String FlightTime =hashTable.get(i).get("FlightTime");
-                String flightCid= hashTable.get(i).get("flightCid");
-                String Price= hashTable.get(i).get("Price");
+                String approve= hashTable.get(i).get("approve");
 
-
-//                out.println("Check1"+id);
-//                out.println("Check2"+sources);
-//                out.println("Check3"+destination);
-//                out.println("Check4"+Fname);
-//                out.println("Check5"+Date);
-//                out.println("Check6"+DeptTime);
-//                out.println("Check7"+FlightTime);
-//                out.println("Check8"+flightCid);
-//                out.println("Check9"+Price);
-
-
-
-
-//                list.add(new flightClass(Integer.valueOf(id),sources,destination,Fname,Date,DeptTime,FlightTime,flightCid,Integer.valueOf(Price)));
+                list.add(new flightClass(Integer.valueOf(id),sources,destination,Fname,Date,DeptTime,FlightTime,Integer.valueOf(approve)));
             }
         }
         return list;
