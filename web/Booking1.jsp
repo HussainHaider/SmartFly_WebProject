@@ -3,6 +3,7 @@
 <%@ page import="com.hussain.Business_Layer.flightDetailClass" %>
 <%@ page import="static java.lang.System.out" %>
 <%@ page import="static java.lang.System.out" %>
+<%@ page import="static java.lang.System.out" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -168,12 +169,12 @@
 </div>
 <%
 
-    String value = request.getParameter("flightSize");
-    int num=Integer.valueOf(value);
+    int value =(int) request.getAttribute("flightSize");
+    boolean checkFlight=false;
     ArrayList<flightClass> list=null;
     ArrayList<flightDetailClass> list2=null;
 
-    if(num!=0)
+    if(value!=0)
     {
         list = (ArrayList<flightClass>) request.getAttribute("flightClass");
         list2 = (ArrayList<flightDetailClass>) request.getAttribute("flightDetailClass");
@@ -182,7 +183,7 @@
 
 %>
 <div class="container" id="myDiv" style="display:none;margin-right: 2%;">
-    <% if (list!=null) { %>
+    <% if (list!=null) { checkFlight=true; %>
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
             <h3><strong>Outbound, <%= list.get(0).getSource() %> to <%= list.get(0).getDestination() %> ( <%= list.size() %> options)</strong></h3>
@@ -232,9 +233,9 @@
         </div>
         <div class="col-md-4">
             <a data-toggle="collapse" href='<%=collapse1%>' style="color:black;text-decoration: none">
-            <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>)">
-                <h4 class="text-success">Economy</h4>
-                <h4 class="text-danger">Price:$<%= list2.get(index).getPrice() %></h4> </div>
+                <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>)">
+                    <h4 class="text-success">Economy</h4>
+                    <h4 class="text-danger">Price:$<%= list2.get(index).getPrice() %></h4> </div>
             </a>
             <div class="collapse arrow_box" id='<%=collapse%>' style="margin-bottom: 2%;">
                 <h3 style="text-align: center">Features</h3>
@@ -250,15 +251,15 @@
     </div>
         <%  } %>
     <%  }else { %>
-        <div class="row">
-            <div class="col-md-12"> <h2>No Flight Found</h2> </div>
-        </div>
+    <div class="row">
+        <div class="col-md-12"> <h2>No Flight Found</h2> </div>
+    </div>
     <% } %>
 </div>
 <div class="row">
     <form method="post" class="form1" id="myForm">
         <div class="col-md-2 col-sm-12" style="float:right;margin:50px">
-            <button  id="doneflightregistration" onclick="Review_flight()" class="btn btn-danger btn-lg next1">Next</button>
+            <button  id="doneflightregistration" onclick="Review_flight()" <% if(!checkFlight) { %> disabled <% }%>  class="btn btn-danger btn-lg next1">Next</button>
         </div>
     </form>
 </div>
