@@ -233,7 +233,7 @@
         </div>
         <div class="col-md-4">
             <a data-toggle="collapse" href='<%=collapse1%>' style="color:black;text-decoration: none">
-                <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>)">
+                <div class="well" style="padding: 11%;" id="selectpacket" onclick="packetSelected(<%= list.get(i).getFID() %>,<%= list2.get(index).getDetailID() %>)">
                     <h4 class="text-success">Economy</h4>
                     <h4 class="text-danger">Price:$<%= list2.get(index).getPrice() %></h4> </div>
             </a>
@@ -344,7 +344,7 @@
 </script>
 <script>
     var myVar;
-    var flightid1;
+    var flightid1,flightDetail1;
 
     function myFunction() {
         myVar = setTimeout(showPage, 3000);
@@ -356,15 +356,16 @@
     }
     function Review_flight()
     {
-        document.getElementById("myForm").action="/MainServlet?value=Review&flightId="+flightid1;
+        document.getElementById("myForm").action="/MainServlet?value=Review&flightId="+flightid1+"&flightDetailID="+flightDetail1;
         console.log("Review_flight_fuction");
         document.getElementById("doneflightregistration").submit();
     }
 
-    function packetSelected(num)
+    function packetSelected(num,num2)
     {
         //window.location.assign("Booking2.html");
         flightid1=num;
+        flightDetail1=num2;
         console.log(num);
 
     }

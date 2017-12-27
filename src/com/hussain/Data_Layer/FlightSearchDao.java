@@ -8,6 +8,7 @@ import static java.lang.System.out;
 
 public class FlightSearchDao {
     String sqlquery=null;
+    ArrayList<Hashtable<String,String>>list1 = new ArrayList();
 
     public ArrayList<Hashtable<String,String>> Searchflight(String source, String destionation,String time)
     {
@@ -56,7 +57,7 @@ public class FlightSearchDao {
                 value = rs.getString("approve");
                 hashTable.put("approve", value);
 
-                list.add(hashTable);
+                list1.add(hashTable);
             }
 
         }catch (ClassNotFoundException e) {
@@ -65,7 +66,7 @@ public class FlightSearchDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return list;
+        return list1;
     }
 
     public Hashtable<String,String> SearchflightbyID(String FID)
@@ -75,8 +76,6 @@ public class FlightSearchDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartflydb","root", null);
-
-
 
             out.println("flightClass check");
             sqlquery="select * from flight where FID=?";
@@ -109,11 +108,8 @@ public class FlightSearchDao {
                 value = rs.getString("FlightTime");
                 list.put("FlightTime", value);
 
-                value = rs.getString("flightCid");
-                list.put("flightCid", value);
-
-                value = rs.getString("Price");
-                list.put("Price", value);
+                value = rs.getString("approve");
+                list.put("approve", value);
             }
 
         }catch (ClassNotFoundException e) {
@@ -161,6 +157,49 @@ public class FlightSearchDao {
                 list.add(hashTable);
             }
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public Hashtable<String,String> SearchflightDetailbyID(String FID)
+    {
+        Hashtable<String,String>list = new Hashtable<>();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartflydb","root", null);
+
+
+            out.println("flightDetailClass check");
+            sqlquery="select * from flightdetail where detailID=?";
+            PreparedStatement preparedStatement=conn.prepareStatement(sqlquery);
+            preparedStatement.setString(1,FID);
+
+            ResultSet rs=preparedStatement.executeQuery();
+
+            if(rs.next()){
+
+                String value = rs.getString("detailID");
+                list.put("id", value);
+
+                value = rs.getString("flightCategory");
+                list.put("category", value);
+
+                value = rs.getString("flightID");
+                list.put("flightID", value);
+
+                value = rs.getString("Price");
+                list.put("Price", value);
+
+                value = rs.getString("feature");
+                list.put("feature", value);
+            }
+
+        }catch (ClassNotFoundException e) {
+            out.println("Check3");
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();

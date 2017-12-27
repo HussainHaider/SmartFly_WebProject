@@ -110,14 +110,29 @@ public class flightServices {
             String Date= hashTable.get("Date");
             String DeptTime= hashTable.get("DeptTime");
             String FlightTime =hashTable.get("FlightTime");
-            String flightCid= hashTable.get("flightCid");
-            String Price= hashTable.get("Price");
+            String flightapprove= hashTable.get("approve");
 
-
- //           F=new flightClass(Integer.valueOf(id),sources,destination,Fname,Date,DeptTime,FlightTime,flightCid,Integer.valueOf(Price));
-
+            F=new flightClass(Integer.valueOf(id),sources,destination,Fname,Date,DeptTime,FlightTime,Integer.valueOf(flightapprove));
         }
         return F;
     }
 
+
+    public flightDetailClass getOneWayflightDetail(String FID)
+    {
+        flightDetailClass F=null;
+        Hashtable<String,String > hashTable = flightsearch.SearchflightDetailbyID(FID);
+
+        if(hashTable != null)
+        {
+            String id= hashTable.get("id");
+            String category=hashTable.get("category");
+            String flightID= hashTable.get("flightID");
+            String Price= hashTable.get("Price");
+            String feature= hashTable.get("feature");
+
+            F=new flightDetailClass(Integer.valueOf(id),Integer.valueOf(category),Integer.valueOf(flightID),Integer.valueOf(Price),feature);
+        }
+        return F;
+    }
 }

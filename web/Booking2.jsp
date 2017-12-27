@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.hussain.Business_Layer.flightClass" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.hussain.Business_Layer.flightDetailClass" %><%--
   Created by IntelliJ IDEA.
   User: Hussain
   Date: 08-Oct-17
@@ -121,10 +123,14 @@
 <div class="hr">
     <hr width="50%" class="style14">
 </div>
+<%
+    flightClass list = (flightClass) request.getAttribute("flightClass");
+    flightDetailClass list2 = (flightDetailClass) request.getAttribute("flightDetailClass");
+%>
 <div class="container">
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
-            <h3><strong>Outbound, Dubai to Karachi</strong></h3> </div>
+            <h3><strong>Outbound, <%=list.getSource()%> to <%=list.getDestination()%></strong></h3> </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -135,26 +141,47 @@
                         <div class="row">
                             <div class="col-md-2 center_text">
                                 <h3 class="j1">Depart</h3>
-                                <h3>DXB</h3>
-                                <h6><strong>09:30</strong></h6> </div>
+                                <h3><%=list.getSource()%></h3>
+                                <h6><strong><%=list.getDeptTime()%></strong></h6> </div>
                             <div class="col-md-2 center_text verticalLine">
                                 <h3 class="j1">Arrvial</h3>
-                                <h3>Khr</h3>
-                                <h6><strong>11:30</strong></h6> </div>
+                                <h3><%=list.getDestination()%></h3>
+                                <% String str1=list.getFlightTime();
+                                    String [] arrOfStr1 = str1.split(":");
+
+                                    String str2=list.getDeptTime();
+                                    String [] arrOfStr2 = str1.split(":");
+
+                                    int a=Integer.valueOf(arrOfStr1[0]);
+                                    int b=Integer.valueOf(arrOfStr2[0]);
+                                    a=(a+b)%24;
+
+                                    int c=Integer.valueOf(arrOfStr1[1]);
+                                    int d=Integer.valueOf(arrOfStr2[1]);
+                                    c=(c+d)%60;
+
+                                    String ArrivalTIme=String.valueOf(a)+":"+String.valueOf(c)+":00";
+                                %>
+
+                                <h6><strong><%= ArrivalTIme %></strong></h6> </div>
                             <div class="col-md-2 center_text verticalLine">
                                 <h3>Flight</h3>
-                                <p>EK600</p>
+                                <p><%=list.getFname()%></p>
                             </div>
                             <div class="col-md-2 center_text verticalLine">
                                 <h3>Duration</h3>
-                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> 2Hours</p>
+                                <% String str=list.getFlightTime();
+                                    String [] arrOfStr = str.split(":");
+                                    String Time=arrOfStr[0]+"Hours "+arrOfStr[1]+"Minutes";
+                                %>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> <%= Time %></p>
                             </div>
                             <div class="col-md-2 center_text verticalLine" style="margin-left: 2%">
                                 <h3><i class="fa fa-plane" aria-hidden="true"></i><strong> Non Stop</strong></h3>
                                 <h1></h1> </div>
                             <div class="col-md-2 center_text verticalLine" style="margin-left: 2%">
                                 <h3><i class="fa fa-ticket" aria-hidden="true"></i><strong> Fare</strong></h3>
-                                <h3>$ 200 only/-</h3> </div>
+                                <h3>$ <%= list2.getPrice() %> only/-</h3> </div>
                         </div>
                     </div>
                 </div>
