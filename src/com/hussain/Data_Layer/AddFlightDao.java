@@ -139,7 +139,7 @@ public class AddFlightDao {
         }
         return false;
     }
-    public boolean Updateflightinfo(String detail_id,String price,String features,String seats) {
+    public boolean Updateflightinfo(String detail_id,String price,String features,String seats,int check) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartflydb", "root", null);
@@ -170,12 +170,22 @@ public class AddFlightDao {
             st1.setInt(2,Integer.valueOf(value));
             st1.executeUpdate();
 
-            sqlquery="update seats set TotalSeats=?,AvailableSeats=? Where detailID=?";
-            st= conn.prepareStatement(sqlquery);
-            st.setInt(1,Integer.valueOf(seats));
-            st.setString(2,seats);
-            st.setInt(3,Integer.valueOf(detail_id));
-            st.executeUpdate();
+            if(check!=0)
+            {
+                sqlquery="update seats set TotalSeats=?,AvailableSeats=? Where detailID=?";
+                st= conn.prepareStatement(sqlquery);
+                st.setInt(1,Integer.valueOf(seats));
+                st.setString(2,seats);
+                st.setInt(3,Integer.valueOf(detail_id));
+                st.executeUpdate();
+            }
+            else
+            {
+                sqlquery="insert into seats (Fdetail_ID,TotalSeats,AvailableSeats) values('"+detail_id+"','"+seats+"','"+seats+"')";
+                st= conn.prepareStatement(sqlquery);
+                st.execute();
+            }
+
 
 
             return true;

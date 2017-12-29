@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 import static java.lang.System.out;
 
@@ -19,11 +20,15 @@ public class addflightinfoServlet extends HttpServlet {
         String Class=request.getParameter("class");
         String flight_id=request.getParameter("flightid");
         String detail_id=request.getParameter("detailID");
+        String seats_Check=request.getParameter("seats_check");
 
 
         String price=request.getParameter("price");
         String features=request.getParameter("field_name[]");
-        String seats=request.getParameter("seats");
+        String seats=null;
+        seats=request.getParameter("seats");
+        out.println("Seats_check are:"+seats_Check);
+        out.println("Seats are:"+seats);
 
         out.println("FLight_InFO_1:"+Class);
         out.println("FLight_InFO_2:"+flight_id);
@@ -35,8 +40,19 @@ public class addflightinfoServlet extends HttpServlet {
         }
         else
         {
-            if (serve.updateflightinfo(detail_id, price, features, seats)) {
-                out.println("FLight_InFO_Updated");
+            if(Integer.valueOf(seats_Check)==0)
+            {
+                out.println("Seats NULL");
+                if (serve.updateflightinfo(detail_id, price, features, seats,0)) {
+                    out.println("FLight_InFO_Updated");
+                }
+            }
+            else
+            {
+                out.println("Seats not NULL");
+                if (serve.updateflightinfo(detail_id, price, features, seats,1)) {
+                    out.println("FLight_InFO_Updated");
+                }
             }
         }
         RequestDispatcher rt=request.getRequestDispatcher("ShowflighttoAdminServlet");

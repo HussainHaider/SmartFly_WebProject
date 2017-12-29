@@ -56,9 +56,9 @@ public class addflightService {
         }
         return addflight.addflightinfo(flight_id,flight_category,price,features,seats);
     }
-    public  boolean updateflightinfo(String detail_id,String price,String features,String seats)
+    public  boolean updateflightinfo(String detail_id,String price,String features,String seats,int check)
     {
-        return  addflight.Updateflightinfo(detail_id,price,features,seats);
+        return  addflight.Updateflightinfo(detail_id,price,features,seats,check);
     }
 
 

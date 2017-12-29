@@ -252,7 +252,6 @@
                                 <input type="text" class="form-control" name="arrAirport" placeholder="Arrival airport"> </div>
                         </div>
                     </div>
-
                 <hr>
                 <h3>Passengers
                     <a href="#">

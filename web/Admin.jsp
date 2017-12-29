@@ -150,9 +150,9 @@
                         if(flightSeats!=null)
                         {
                             for(int j=0;j<flightSeats.size();j++) {
-                                if(flightSeats.get(i).getFDetailId()==detailID)
+                                if(flightSeats.get(j).getFDetailId()==detailID)
                                 {
-                                    S2=flightSeats.get(i);
+                                    S2=flightSeats.get(j);
                                     totalSeats=S2.getTotalSeats();
                                 }
 
@@ -160,7 +160,7 @@
                         }
 
 
-                        String action="/MainServlet?value=class&class=first&flightid="+ID+"&detailID="+detailID;
+                        String action="/MainServlet?value=class&class=first&flightid="+ID+"&detailID="+detailID+"&seats_check="+totalSeats;
                     %>
 
                     <form class="form-horizontal" method="post"  action='<%=action%>'>
@@ -175,12 +175,9 @@
                         <label class="control-label col-sm-2" >Features:</label>
                         <div class="col-sm-6">
                             <div class="field_wrapper">
-                                <div><input type="text" <% if(F2!=null) {%>value="<%=feature%>" <% } %> class="form-control input-dynamic" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><span class="glyphicon glyphicon-minus-sign" style="color:red;"></span></a></div>
+                                <div><input type="text" <% if(F2!=null) {%>value="<%=feature%>" <% } %> class="form-control input-dynamic" name="field_name[]" value=""/></div>
                             </div>
 
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="javascript:void(0);" class="add_button" title="Add field"><img src="add-icon.png"/><span class="glyphicon glyphicon-plus-sign" style="color:green;"></span></a>
                         </div>
                     </div>
 
@@ -207,6 +204,7 @@
                         ID=flights.get(i).getFID();
                         flightDetailClass F3=null;
                         seatsClass S3=null;
+                        totalSeats=0;
                         detailID=0;
                         if(flightDetail!=null)
                         {
@@ -224,16 +222,16 @@
                         if(flightSeats!=null)
                         {
                             for(int j=0;j<flightSeats.size();j++) {
-                                if(flightSeats.get(i).getFDetailId()==detailID)
+                                if(flightSeats.get(j).getFDetailId()==detailID)
                                 {
-                                    S3=flightSeats.get(i);
+                                    S3=flightSeats.get(j);
                                     totalSeats=S3.getTotalSeats();
                                 }
 
                             }
                         }
 
-                        action="/MainServlet?value=class&class=Buniess&flightid="+ID+"&detailID="+detailID;
+                        action="/MainServlet?value=class&class=Buniess&flightid="+ID+"&detailID="+detailID+"&seats_check="+totalSeats;
                     %>
 
                     <form class="form-horizontal" method="post" action='<%=action%>'>
@@ -248,20 +246,16 @@
                             <label class="control-label col-sm-2">Features:</label>
                             <div class="col-sm-6">
                                 <div class="field_wrapper">
-                                    <div><input type="text" <% if(F3!=null) {%>value="<%=feature%>" <% } %>  class="form-control input-dynamic" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button" title="Remove field"><span class="glyphicon glyphicon-minus-sign" style="color:red;"></span></a></div>
+                                    <div><input type="text" <% if(F3!=null) {%>value="<%=feature%>" <% } %>  class="form-control input-dynamic" name="field_name[]" value=""/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-
-                                <a href="javascript:void(0);" class="add_button" title="Add field"><img src="add-icon.png"/><span class="glyphicon glyphicon-plus-sign" style="color:green;"></span></a>
-
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" >No. of seats:</label>
                             <div class="col-sm-6">
-                                <input type="number" min="0" max="1000" <% if(S3!=null) {%>value="<%=totalSeats%>" <% } %> step="1" class="form-control"  placeholder="">
+                                <input type="number" name="seats" min="0" max="1000" <% if(S3!=null) {%>value="<%=totalSeats%>" <% } %>  class="form-control" step="1" placeholder="num">
                             </div>
                             <div class="col-sm-4"></div>
                         </div>
@@ -277,15 +271,17 @@
                 <div class="panel-body"><a data-toggle="collapse" style="color:black" href='<%=economy1%>'>Economy Class </a></div>
                 <div id='<%=economy%>' class="panel-collapse collapse panel-inner-in">
 
+
                     <% ID=flights.get(i).getFID();
 
                         flightDetailClass F1=null;
                         seatsClass S1=null;
                         detailID=0;
+                        totalSeats=0;
                         if(flightDetail!=null)
                         {
                             for(int j=0;j<flightDetail.size();j++) {
-                                if (flightDetail.get(j).getFlightID()==ID && flightDetail.get(j).getFlightCategoryID()==3)
+                                if (flightDetail.get(j).getFlightID()==ID && flightDetail.get(j).getFlightCategoryID()==1)
                                 {
                                     F1=flightDetail.get(j);
                                     Price=F1.getPrice();
@@ -298,9 +294,10 @@
                         if(flightSeats!=null)
                         {
                             for(int j=0;j<flightSeats.size();j++) {
-                                if(flightSeats.get(i).getFDetailId()==detailID)
+                                int num=flightSeats.get(j).getFDetailId();
+                                if(num==detailID)
                                 {
-                                    S1=flightSeats.get(i);
+                                    S1=flightSeats.get(j);
                                     totalSeats=S1.getTotalSeats();
                                 }
 
@@ -308,9 +305,8 @@
                         }
 
 
-                        action="/MainServlet?value=class&class=Economy&flightid="+ID+"&detailID="+detailID;
+                        action="/MainServlet?value=class&class=Economy&flightid="+ID+"&detailID="+detailID+"&seats_check="+totalSeats;
                     %>
-
 
                     <form class="form-horizontal" method="post" action='<%=action%>'>
                         <div class="form-group">
@@ -324,18 +320,15 @@
                             <label class="control-label col-sm-2" >Features:</label>
                             <div class="col-sm-6">
                                 <div class="field_wrapper">
-                                    <div><input type="text" <% if(F1!=null) {%>value="<%=feature%>" <% } %> class="form-control input-dynamic" name="field_name[]" /><a href="javascript:void(0);" class="remove_button" title="Remove field"><span class="glyphicon glyphicon-minus-sign" style="color:red;"></span></a></div>
+                                    <div><input type="text" <% if(F1!=null) {%>value="<%=feature%>" <% } %> class="form-control input-dynamic" name="field_name[]" /></div>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <a href="javascript:void(0);" class="add_button" title="Add field"><img src="add-icon.png"/><span class="glyphicon glyphicon-plus-sign" style="color:green;"></span></a>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2">No. of seats:</label>
                             <div class="col-sm-6">
-                                <input type="number" min="0" max="1000" <% if(S1!=null) {%>value="<%=totalSeats%>" <% } %> step="1" class="form-control"  placeholder="">
+                                <input type="number" name="seats" min="0" max="1000" <% if(S1!=null) {%>value="<%=totalSeats%>" <% }%> step="1" class="form-control"  placeholder="">
                             </div>
                             <div class="col-sm-4"></div>
                         </div>
