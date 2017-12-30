@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                    <form role="form" id="payment-form" action="/MainServlet?value=Verify"  method="POST">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -171,7 +171,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12"> <a href="Booking5.jsp" class="btn btn-success btn-lg btn-block">Next</a> </div>
+                            <div class="col-xs-12"> <button type="submit" class="btn btn-success btn-lg btn-block">Next</button> </div>
                         </div>
                         <div class="row" style="display:none;">
                             <div class="col-xs-12">

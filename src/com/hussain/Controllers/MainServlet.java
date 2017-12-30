@@ -47,6 +47,12 @@ public class MainServlet extends HttpServlet {
             RequestDispatcher rt=request.getRequestDispatcher("addflightinfoServlet");
             rt.forward(request,response);
         }
+        if(tmp.equals("Verify"))
+        {
+            out.println("Verify_mainServlet");
+            RequestDispatcher rt=request.getRequestDispatcher("VerificationServlet");
+            rt.forward(request,response);
+        }
 
 
     }

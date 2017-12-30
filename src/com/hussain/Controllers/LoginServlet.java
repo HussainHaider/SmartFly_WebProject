@@ -30,6 +30,8 @@ public class LoginServlet extends HttpServlet {
             out.println("Check5");
             HttpSession session=request.getSession();
             session.setAttribute("user_email",email);
+            session.setAttribute("user_object",u);
+
             if(email.equals("admin@gmail.com"))
             {
 
