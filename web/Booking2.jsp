@@ -187,7 +187,7 @@
                 </div>
             </div>
         </div>
-    </div> <a href="Booking3.html" class="btn btn-danger btn-lg next2">Next</a> </div>
+    </div> <a href="Booking3.jsp" class="btn btn-danger btn-lg next2">Next</a> </div>
 <footer id="myFooter">
     <div class="container">
         <div class="row">

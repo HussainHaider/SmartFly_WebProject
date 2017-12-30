@@ -148,12 +148,12 @@
                                     <div class="col-md-4 col-xs-12">
                                         <div class="input-group">
                                             <h5 style="float: left">FirstName </h5> <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" id="exampleInputAmount"> </div>
+                                            <input type="text" class="form-control" > </div>
                                     </div>
                                     <div class="col-md-4 col-xs-12">
                                         <div class="input-group">
                                             <h5 style="float: left">LastName </h5> <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Departing"> </div>
+                                            <input type="text" class="form-control"  placeholder="lastname"> </div>
                                     </div>
                                 </div>
                             </form>
@@ -162,7 +162,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><a href="Booking4.jsp" class="btn btn-danger btn-lg next2">Next</a>
 </div>
 <footer id="myFooter">
     <div class="container">
