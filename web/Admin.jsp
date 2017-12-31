@@ -31,6 +31,14 @@
 </head>
 
 <body>
+<%
+    if(session.getAttribute("user_email")==null)
+    {
+        response.sendRedirect("main.jsp");
+    }
+%>
+
+
 <a id="return-to-top"><i class="icon-chevron-up"></i></a>
 <div class="container-fluid">
     <div class="row">
