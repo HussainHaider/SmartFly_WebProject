@@ -11,6 +11,9 @@
         </webroots>
       </configuration>
     </facet>
+    <facet type="WebServicesClient" name="WebServices Client">
+      <configuration ws.engine="Apache Axis" />
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -21,5 +24,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Tomcat 8.5.20" level="application_server_libraries" />
     <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="JAX-WS-Apache Axis" level="project" />
   </component>
 </module>

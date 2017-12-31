@@ -30,4 +30,8 @@ public class DataDao {
 
         return list;
     }
+
+    public static String getflightprice() {
+        return "10000";
+    }
 }
