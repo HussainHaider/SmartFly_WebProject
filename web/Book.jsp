@@ -21,7 +21,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>--%>
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Footer-with-social-icons.css">
@@ -29,6 +29,11 @@
     <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Audiowide|Luckiest+Guy" rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="js/autocompleter.js"></script>
+    <link rel="stylesheet"
+          href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 </head>
 <body>
 <a  id="return-to-top"><i class="icon-chevron-up"></i></a>
@@ -230,7 +235,7 @@
                     <div class="form-group row" style="margin-top: 1%;margin-left: 1%;">
                         <div class="col-md-4">
                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-plane" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="deptAirport" placeholder="Departure airport"> </div>
+                                <input type="text"  id="search1" class="form-control" name="deptAirport" placeholder="Departure airport"> </div>
                         </div>
                         <div class="col-md-4">
                             <div class="input-group"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
